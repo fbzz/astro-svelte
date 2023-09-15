@@ -18,5 +18,4 @@
       {text}
     </p>
   </div>
-  <div class="rounded-t-lg w-full" />
 </div>
