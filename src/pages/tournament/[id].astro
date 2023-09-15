@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Team-card.svelte";
+import GameInfo from "../../components/Game-info.svelte";
+import News from "../../components/News.svelte";
+import Title from "../../components/Title.svelte";
+export function getStaticPaths() {
+  return [{ params: { id: 1 } }];
+}
+
+const { id } = Astro.params;
+
+const response = await fetch('https://giant-rose-octopus.cyclic.cloud');
+const data:Tournament = await response.json();
+const {players, games, news} = data;
+---
+
+<Layout title="Fifa!">
+  <main>
+    <div class="flex h-full">
+    <div class="flex flex-wrap place-items-center w-1/6 p-5 bg-neutral-700 shadow-2xl border-x-slate-900 overflow-auto">
+     <Title>Classification</Title>
+      {players.map((player) => <Card playerData={player} />)}
+    </div>
+    <div class="bg-neutral-700 w-3/6 p-5 overflow-auto">
+      <Title>Games</Title>
+      <h1 class="text-white text-2xl">
+        {games.map((game) => <GameInfo gameInfo={game} />)}
+      </h1>
+    </div>
+    <div class="bg-neutral-700 w-2/6 p-7 flex flex-col place-items-center overflow-auto">
+      <Title >News</Title>
+      {news.map((value) => <News  sectionNew={value}/>)}
+    </div>
+  </div>
+  </main>
+</Layout>
