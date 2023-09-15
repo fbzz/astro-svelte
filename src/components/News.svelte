@@ -18,7 +18,5 @@
       {text}
     </p>
   </div>
-  <div class="rounded-t-lg w-full">
-    <img src="/fifa.jpg" width="100" height="100" class="w-full h-84" />
-  </div>
+  <div class="rounded-t-lg w-full" />
 </div>
